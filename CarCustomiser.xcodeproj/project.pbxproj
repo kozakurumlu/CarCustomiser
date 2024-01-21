@@ -16,6 +16,7 @@
 		E77C4A0F2B59DE9000858F66 /* CarCustomiserUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77C4A0E2B59DE9000858F66 /* CarCustomiserUITestsLaunchTests.swift */; };
 		E77C4A1C2B59E19F00858F66 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77C4A1B2B59E19F00858F66 /* Car.swift */; };
 		E77C4A1D2B59E1FB00858F66 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77C4A1B2B59E19F00858F66 /* Car.swift */; };
+		E77C4A1F2B5D6A8B00858F66 /* StarterCars.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77C4A1E2B5D6A8B00858F66 /* StarterCars.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		E77C4A0C2B59DE9000858F66 /* CarCustomiserUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarCustomiserUITests.swift; sourceTree = "<group>"; };
 		E77C4A0E2B59DE9000858F66 /* CarCustomiserUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarCustomiserUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		E77C4A1B2B59E19F00858F66 /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
+		E77C4A1E2B5D6A8B00858F66 /* StarterCars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarterCars.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				E77C49F52B59DE8F00858F66 /* Assets.xcassets */,
 				E77C49F72B59DE8F00858F66 /* Preview Content */,
 				E77C4A1B2B59E19F00858F66 /* Car.swift */,
+				E77C4A1E2B5D6A8B00858F66 /* StarterCars.swift */,
 			);
 			path = CarCustomiser;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 			files = (
 				E77C49F42B59DE8D00858F66 /* ContentView.swift in Sources */,
 				E77C49F22B59DE8D00858F66 /* CarCustomiserApp.swift in Sources */,
+				E77C4A1F2B5D6A8B00858F66 /* StarterCars.swift in Sources */,
 				E77C4A1C2B59E19F00858F66 /* Car.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,13 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
-    let car = Car(make:"Mazda", model: "MX-5", topSpeed: 125, acceleration: 7.7, handling: 5)
+    let starterCars = StarterCars()
+    var selectedCar: Int = 0
     
     var body: some View {
-        let data = car.displayStats()
-        Text(data)
-
-        
+        VStack{
+            Text(starterCars.car[selectedCar].displayStats())
+            Button("Random Car", action: {print("Button Pressed")})
+            
+            
+        }
     }
 }
 
