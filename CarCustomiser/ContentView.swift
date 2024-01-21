@@ -12,11 +12,8 @@ struct ContentView: View {
     
     var body: some View {
         let data = car.displayStats()
-        Text(data[0])
-        Text(data[1])
-        Text(data[2])
-        Text(data[3])
-        Text(data[4])
+        Text(data)
+
         
     }
 }
