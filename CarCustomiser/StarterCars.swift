@@ -8,7 +8,7 @@
 import Foundation
 
 struct StarterCars {
-    let car = [
+    var cars = [
             Car(make:"Mazda", model: "MX-5", topSpeed: 125, acceleration: 7.7, handling: 5),
                Car(make:"Ferrari", model: "SpiderX", topSpeed: 230, acceleration: 9.1, handling: 8),
                Car(make:"Tesla", model: "Model S", topSpeed: 200, acceleration: 9.5, handling: 7),
