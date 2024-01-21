@@ -25,7 +25,7 @@ final class CarCustomiserTests: XCTestCase {
         //arrange
         let car = Car(make:"Mazda", model: "MX-5", topSpeed: 125, acceleration: 7.7, handling: 5)
         //assert
-        let expected ="""
+        let expected = """
         Make: \(car.make)
         Model: \(car.model)
         Top Speed: \(car.topSpeed)mph

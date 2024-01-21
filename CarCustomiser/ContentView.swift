@@ -9,12 +9,18 @@ import SwiftUI
 
 struct ContentView: View {
     let starterCars = StarterCars()
-    var selectedCar: Int = 0
-    
+    @State private var selectedCar: Int = 0
     var body: some View {
-        VStack{
+        VStack ( alignment: .leading, spacing: 20){
             Text(starterCars.car[selectedCar].displayStats())
-            Button("Random Car", action: {print("Button Pressed")})
+            Button("Random Car", action: {
+                if (selectedCar + 1) == self.starterCars.car.count{
+                    selectedCar = 0
+                }
+                else{
+                    selectedCar += 1
+                }
+            })
             
             
         }
