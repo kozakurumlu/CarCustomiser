@@ -9,10 +9,10 @@ import Foundation
 
 struct StarterCars {
     var cars = [
-            Car(make:"Mazda", model: "MX-5", topSpeed: 125, acceleration: 7.7, handling: 5),
-               Car(make:"Ferrari", model: "SpiderX", topSpeed: 230, acceleration: 9.1, handling: 8),
-               Car(make:"Tesla", model: "Model S", topSpeed: 200, acceleration: 9.5, handling: 7),
-               Car(make:"Porche", model: "911", topSpeed: 260, acceleration: 8.2, handling: 9)
+            Car(make:"Mazda", model: "MX-5", topSpeed: 125, acceleration: 8.7, handling: 5),
+            Car(make:"Ferrari", model: "SpiderX", topSpeed: 230, acceleration: 7.3, handling: 8),
+            Car(make:"Tesla", model: "Model S", topSpeed: 200, acceleration: 5.3, handling: 7),
+               Car(make:"Porche", model: "911", topSpeed: 260, acceleration: 6.2, handling: 9)
     ]
     
     

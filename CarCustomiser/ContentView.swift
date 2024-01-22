@@ -15,15 +15,64 @@ struct ContentView: View {
     @State private var exhaustPackage = false
     @State private var tiresPackage = false
     @State private var noxPackage = false
+    @State private var suspensionPackage = false
+    @State private var remainingFunds = 1000
     
+    var exhaustPackageEnabled: Bool {
+            if exhaustPackage == true {
+                return true
+            }
+            else if remainingFunds-350 > 0{
+                return true
+            }
+            else{
+                return false
+            }
+        }
+    
+    var tiresPackageEnabled: Bool {
+        if tiresPackage == true {
+            return true
+        }
+        else if remainingFunds-250 > 0{
+            return true
+        }
+        else{
+            return false
+        }
+    }
+    var noxPackageEnabled: Bool {
+        if noxPackage == true {
+            return true
+        }
+        else if remainingFunds-300 > 0{
+            return true
+        }
+        else{
+            return false
+        }
+    }
+        var suspensionPackageEnabled: Bool {
+            if suspensionPackage == true {
+                return true
+            }
+            else if remainingFunds-500 > 0{
+                return true
+            }
+            else{
+                return false
+            }
+        }
     var body: some View {
         let exhaustPackageBinding = Binding<Bool>(
             get: {self.exhaustPackage},
             set: { newValue in self.exhaustPackage = newValue
                 if newValue == true {
                     starterCars.cars[selectedCar].topSpeed += 5
+                    remainingFunds -= 350
                 } else{
                     starterCars.cars[selectedCar].topSpeed -= 5
+                    remainingFunds += 350
                 }
             }
         )
@@ -33,8 +82,10 @@ struct ContentView: View {
             set: { newValue in self.tiresPackage = newValue
                 if newValue == true {
                     starterCars.cars[selectedCar].handling += 2
+                    remainingFunds -= 250
                 } else{
                     starterCars.cars[selectedCar].handling -= 2
+                    remainingFunds += 250
                 }
             }
         )
@@ -43,33 +94,64 @@ struct ContentView: View {
             get: {self.noxPackage},
             set: { newValue in self.noxPackage = newValue
                 if newValue == true {
-                    starterCars.cars[selectedCar].acceleration -= 1
+                    starterCars.cars[selectedCar].acceleration -= 2
+                    remainingFunds -= 300
                 } else{
-                    starterCars.cars[selectedCar].acceleration += 1
+                    starterCars.cars[selectedCar].acceleration += 2
+                    remainingFunds += 300
                 }
             }
         )
         
-        Form{
-            VStack ( alignment: .leading, spacing: 20){
-                Text(starterCars.cars[selectedCar].displayStats())
-                Button("Random Car", action: {
-                    if (selectedCar + 1) == self.starterCars.cars.count{
-                        selectedCar = 0
-                    }
-                    else{
-                        selectedCar += 1
-                    }
-                    
-                })
-                Section{
-                    Toggle("Exhuast Package", isOn: exhaustPackageBinding)
-                    Toggle("Tires Package", isOn: tiresPackageBinding)
-                    Toggle("NOx", isOn: noxPackageBinding)
+        let suspensionPackageBinding = Binding<Bool>(
+            get: {self.suspensionPackage},
+            set: { newValue in self.suspensionPackage = newValue
+                if newValue == true {
+                    starterCars.cars[selectedCar].handling += 1
+                    starterCars.cars[selectedCar].acceleration -= 1
+                    remainingFunds -= 500
+                } else{
+                    starterCars.cars[selectedCar].handling -= 1
+                    starterCars.cars[selectedCar].acceleration += 1
+                    remainingFunds += 500
                     
                 }
             }
+        )
+        VStack{
+            
+            Form{
+                VStack ( alignment: .leading, spacing: 20){
+                    Text(starterCars.cars[selectedCar].displayStats())
+                    Button("Random Car", action: {
+                        if (selectedCar + 1) == self.starterCars.cars.count{
+                            selectedCar = 0
+                        }
+                        else{
+                            selectedCar += 1
+                        }
+                        
+                    })
+                    Section{
+                        Toggle("Exhuast Package (Cost: 350)", isOn: exhaustPackageBinding)
+                            .disabled(!exhaustPackageEnabled)
+                        Toggle("Tires Package (Cost: 250)", isOn: tiresPackageBinding)
+                            .disabled(!tiresPackageEnabled)
+                        Toggle("NOx (Cost: 300)", isOn: noxPackageBinding)
+                            .disabled(!noxPackageEnabled)
+                        Toggle("Suspension Package (Cost: 500)", isOn: suspensionPackageBinding)
+                            .disabled(!suspensionPackageEnabled)
+                        
+                    }
+                }
+            }
+            Text("Remaining Funds \(remainingFunds)")
+                .foregroundColor(.red)
+                .baselineOffset(20)
         }
+    }
+    func resetDisplay(){
+        //TODO: Add functionality
     }
         
 }
