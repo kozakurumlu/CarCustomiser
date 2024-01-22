@@ -7,6 +7,15 @@
 
 import SwiftUI
 
+struct carState {
+    @State public var exhaustPackage = false
+    @State public var tiresPackage = false
+    @State public var noxPackage = false
+    @State public var suspensionPackage = false
+    @State public var remainingFunds = 1000
+}
+
+
 struct ContentView: View {
     @State private var starterCars = StarterCars()
     
@@ -17,6 +26,7 @@ struct ContentView: View {
     @State private var noxPackage = false
     @State private var suspensionPackage = false
     @State private var remainingFunds = 1000
+    @State private var carStates: [carState] = [carState(), carState(), carState(), carState()]
     
     var exhaustPackageEnabled: Bool {
             if exhaustPackage == true {
@@ -126,9 +136,11 @@ struct ContentView: View {
                     Button("Random Car", action: {
                         if (selectedCar + 1) == self.starterCars.cars.count{
                             selectedCar = 0
+                            resetDisplay(carStates: carStates, previousCar: carStates.count-1, selectedCar: selectedCar)
                         }
                         else{
                             selectedCar += 1
+                            resetDisplay(carStates: carStates, previousCar: selectedCar-1, selectedCar: selectedCar)
                         }
                         
                     })
@@ -150,8 +162,19 @@ struct ContentView: View {
                 .baselineOffset(20)
         }
     }
-    func resetDisplay(){
-        //TODO: Add functionality
+    func resetDisplay(carStates: [carState], previousCar: Int, selectedCar: Int){
+        carStates[previousCar].exhaustPackage = self.exhaustPackage
+        carStates[previousCar].tiresPackage = self.tiresPackage
+        carStates[previousCar].noxPackage = self.noxPackage
+        carStates[previousCar].suspensionPackage = self.suspensionPackage
+        carStates[previousCar].remainingFunds = self.remainingFunds
+        
+        self.remainingFunds = carStates[selectedCar].remainingFunds
+        self.tiresPackage = carStates[selectedCar].tiresPackage
+        self.exhaustPackage = carStates[selectedCar].exhaustPackage
+        self.suspensionPackage = carStates[selectedCar].suspensionPackage
+        self.noxPackage = carStates[selectedCar].noxPackage
+        
     }
         
 }
