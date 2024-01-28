@@ -29,49 +29,17 @@ struct ContentView: View {
     @State private var carStates: [carState] = [carState(), carState(), carState(), carState()]
     
     var exhaustPackageEnabled: Bool {
-            if exhaustPackage == true {
-                return true
-            }
-            else if remainingFunds-350 > 0{
-                return true
-            }
-            else{
-                return false
-            }
-        }
+        return exhaustPackage ? true: remainingFunds >= 350 ? true : false
+    }
     
     var tiresPackageEnabled: Bool {
-        if tiresPackage == true {
-            return true
-        }
-        else if remainingFunds-250 > 0{
-            return true
-        }
-        else{
-            return false
-        }
+        return tiresPackage ? true: remainingFunds >= 250 ? true : false
     }
     var noxPackageEnabled: Bool {
-        if noxPackage == true {
-            return true
-        }
-        else if remainingFunds-300 > 0{
-            return true
-        }
-        else{
-            return false
-        }
+        return noxPackage ? true: remainingFunds >= 300 ? true : false
     }
         var suspensionPackageEnabled: Bool {
-            if suspensionPackage == true {
-                return true
-            }
-            else if remainingFunds-500 > 0{
-                return true
-            }
-            else{
-                return false
-            }
+            return suspensionPackage ? true: remainingFunds >= 500 ? true : false
         }
     var body: some View {
         let exhaustPackageBinding = Binding<Bool>(
@@ -92,10 +60,10 @@ struct ContentView: View {
             set: { newValue in self.tiresPackage = newValue
                 if newValue == true {
                     starterCars.cars[selectedCar].handling += 2
-                    remainingFunds -= 250
+                    remainingFunds -= 400
                 } else{
                     starterCars.cars[selectedCar].handling -= 2
-                    remainingFunds += 250
+                    remainingFunds += 400
                 }
             }
         )
@@ -147,7 +115,7 @@ struct ContentView: View {
                     Section{
                         Toggle("Exhuast Package (Cost: 350)", isOn: exhaustPackageBinding)
                             .disabled(!exhaustPackageEnabled)
-                        Toggle("Tires Package (Cost: 250)", isOn: tiresPackageBinding)
+                        Toggle("Tires Package (Cost: 400)", isOn: tiresPackageBinding)
                             .disabled(!tiresPackageEnabled)
                         Toggle("NOx (Cost: 300)", isOn: noxPackageBinding)
                             .disabled(!noxPackageEnabled)
@@ -163,6 +131,7 @@ struct ContentView: View {
         }
     }
     func resetDisplay(carStates: [carState], previousCar: Int, selectedCar: Int){
+        //going back to previous selections when returning to same car
         carStates[previousCar].exhaustPackage = self.exhaustPackage
         carStates[previousCar].tiresPackage = self.tiresPackage
         carStates[previousCar].noxPackage = self.noxPackage
